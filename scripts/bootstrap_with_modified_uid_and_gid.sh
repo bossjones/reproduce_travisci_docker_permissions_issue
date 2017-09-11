@@ -7,23 +7,53 @@ source ${_DIR}/default.sh
 
 apt-get update -y && \
 apt-get install -y git && \
-apt-get install -y build-essential libssl-dev libreadline-dev wget curl openssh-server && \
-apt-get install -y gcc make linux-headers-$(uname -r) && \
+apt-get install -y build-essential \
+                   libssl-dev \
+                   libreadline-dev \
+                   wget curl \
+                   openssh-server && \
+apt-get install -y gcc make \
+                   linux-headers-$(uname -r) && \
 apt-get install -y ca-certificates bash && \
-apt-get install -y python-setuptools perl pkg-config software-properties-common python python-pip python-dev && \
-easy_install --upgrade pip && easy_install --upgrade setuptools; pip install setuptools --upgrade && \
+apt-get install -y python-setuptools \
+                   perl pkg-config \
+                   software-properties-common \
+                   python python-pip \
+                   python-dev && \
+
+easy_install --upgrade pip && \
+easy_install --upgrade setuptools; \
+pip install setuptools --upgrade && \
+
 add-apt-repository ppa:git-core/ppa -y && \
+
 apt-get update && \
 apt-get install -yqq git && \
 apt-get update && \
 apt-get upgrade -y && \
+
 apt-get install -y lsof strace && \
-apt -y update && apt-get -y upgrade && \
+apt update -y && \
+apt-get upgrade -y && \
+
 apt -y install software-properties-common && \
 apt-add-repository -y ppa:ansible/ansible && \
 apt -y update && \
 apt -y install ansible && \
-apt-get install -y openssh-server cryptsetup build-essential libssl-dev libreadline-dev zlib1g-dev linux-source dkms nfs-common zip unzip tree screen vim ntp vim-nox
+
+apt-get install -y openssh-server \
+                   cryptsetup \
+                   build-essential \
+                   libssl-dev \
+                   libreadline-dev \
+                   zlib1g-dev \
+                   linux-source \
+                   dkms \
+                   nfs-common \
+                   zip unzip \
+                   tree screen \
+                   vim ntp \
+                   vim-nox
 
 echo ${_USER}:${_USER} | chpasswd
 groupmod -A ${_USER} wheel
@@ -58,13 +88,13 @@ apt-get -y clean
 # Install docker now
 # prereqs
 apt-get update
-apt-get install --no-install-recommends \
+apt-get install -yqq --no-install-recommends \
     apt-transport-https \
     curl \
     software-properties-common
 
 # aufs support
-apt-get install -y --no-install-recommends \
+apt-get install -yqq --no-install-recommends \
     linux-image-extra-$(uname -r) \
     linux-image-extra-virtual
 
@@ -81,7 +111,7 @@ apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070AD
 sudo sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-trusty main \
 > /etc/apt/sources.list.d/docker.list"
 sudo apt-get update
-sudo apt-get install ${DOCKER_PACKAGE_NAME}
+sudo apt-get install -y ${DOCKER_PACKAGE_NAME}
 
 apt-get update
 
@@ -106,18 +136,31 @@ sudo chmod +x /usr/local/bin/ctop
 
 # other deps
 sudo apt-get update
-sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev nodejs -y
-sudo apt-get install -y libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+sudo apt-get install -y git-core \
+                     htop \
+                     curl zlib1g-dev \
+                     build-essential \
+                     libssl-dev libreadline-dev \
+                     libyaml-dev libsqlite3-dev \
+                     sqlite3 libxml2-dev libxslt1-dev \
+                     libcurl4-openssl-dev \
+                     python-software-properties \
+                     libffi-dev nodejs
+
+sudo apt-get install -y libgdbm-dev \
+                        libncurses5-dev \
+                        automake libtool \
+                        bison libffi-dev
 
 # https://askubuntu.com/questions/21547/what-are-the-packages-libraries-i-should-install-before-compiling-python-from-so
 sudo apt-get install -y build-essential \
-libncursesw5-dev \
-libreadline5-dev \
-libssl-dev \
-libgdbm-dev \
-libc6-dev \
-libsqlite3-dev tk-dev \
-libbz2-dev
+                        libncursesw5-dev \
+                        libreadline5-dev \
+                        libssl-dev \
+                        libgdbm-dev \
+                        libc6-dev \
+                        libsqlite3-dev tk-dev \
+                        libbz2-dev
 
 sudo apt-get build-dep -y python3.4
 
