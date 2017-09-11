@@ -6,6 +6,8 @@ _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${_DIR}/default.sh
 
 apt-get update -y && \
+apt-get install -y software-properties-common \
+                   python-software-properties && \
 apt-get install -y git && \
 apt-get install -y build-essential \
                    libssl-dev \
@@ -33,13 +35,13 @@ apt-get update && \
 apt-get upgrade -y && \
 
 apt-get install -y lsof strace && \
-apt update -y && \
+apt-get update -yqq && \
 apt-get upgrade -y && \
 
-apt -y install software-properties-common && \
-apt-add-repository -y ppa:ansible/ansible && \
-apt -y update && \
-apt -y install ansible && \
+apt-get install -y software-properties-common && \
+add-apt-repository -y ppa:ansible/ansible && \
+apt-get update -y && \
+apt install -y ansible && \
 
 apt-get install -y openssh-server \
                    cryptsetup \
@@ -87,7 +89,7 @@ apt-get -y clean
 
 # Install docker now
 # prereqs
-apt-get update
+apt-get update -qq
 apt-get install -yqq --no-install-recommends \
     apt-transport-https \
     curl \
@@ -110,10 +112,10 @@ add-apt-repository -y \
 apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 sudo sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-trusty main \
 > /etc/apt/sources.list.d/docker.list"
-sudo apt-get update
+sudo apt-get update -qq
 sudo apt-get install -y ${DOCKER_PACKAGE_NAME}
 
-apt-get update
+apt-get update -qq
 
 apt-cache search ${DOCKER_PACKAGE_NAME}
 apt-cache madison ${DOCKER_PACKAGE_NAME}
