@@ -20,7 +20,7 @@ apt-get upgrade -y && \
 apt-get install -y lsof strace && \
 apt -y update && apt-get -y upgrade && \
 apt -y install software-properties-common && \
-apt-add-repository ppa:ansible/ansible && \
+apt-add-repository -y ppa:ansible/ansible && \
 apt -y update && \
 apt -y install ansible && \
 apt-get install -y openssh-server cryptsetup build-essential libssl-dev libreadline-dev zlib1g-dev linux-source dkms nfs-common zip unzip tree screen vim ntp vim-nox
@@ -71,7 +71,7 @@ apt-get install -y --no-install-recommends \
 # Download and import Docker’s public key for CS packages:
 curl -fsSL 'https://sks-keyservers.net/pks/lookup?op=get&search=0xee6d536cf7dc86e2d7d56f59a178ac6c6238f52e' | sudo apt-key add -
 
-add-apt-repository \
+add-apt-repository -y \
    "deb https://packages.docker.com/1.12/apt/repo/ \
    ubuntu-$(lsb_release -cs) \
    main"
