@@ -149,7 +149,6 @@ sudo apt-get install -yqq libgdbm-dev \
 # https://askubuntu.com/questions/21547/what-are-the-packages-libraries-i-should-install-before-compiling-python-from-so
 sudo apt-get install -yqq build-essential \
                         libncursesw5-dev \
-                        libreadline5-dev \
                         libssl-dev \
                         libgdbm-dev \
                         libc6-dev \
