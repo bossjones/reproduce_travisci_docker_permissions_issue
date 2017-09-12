@@ -53,7 +53,7 @@ echo ${_USER}:${_USER} | chpasswd
 usermod -a -G wheel ${_USER}
 
 # Install the ${_USER} insecure public SSH key.
-mkdir /home/${_USER}/.ssh
+mkdir -p /home/${_USER}/.ssh
 curl -LsSo /home/${_USER}/.ssh/authorized_keys https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
 chown -R ${_USER}:${_USER} /home/${_USER}/.ssh
 chmod -R go-rwx /home/${_USER}/.ssh
