@@ -90,7 +90,7 @@ apt-get install -yqq --no-install-recommends \
     software-properties-common
 
 # aufs support
-apt-get install -yqq --no-install-recommends \
+apt-get install -y --no-install-recommends \
     linux-image-extra-$(uname -r) \
     linux-image-extra-virtual
 
