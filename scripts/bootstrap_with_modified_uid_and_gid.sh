@@ -6,33 +6,33 @@ _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${_DIR}/default.sh
 
 apt-get update -yqq && \
-apt-get install -y software-properties-common \
+apt-get install -yqq software-properties-common \
                    python-software-properties && \
-apt-get install -y git && \
-apt-get install -y build-essential \
+apt-get install -yqq git && \
+apt-get install -yqq build-essential \
                    libssl-dev \
                    libreadline-dev \
                    wget curl \
                    openssh-server && \
-apt-get install -y gcc make \
+apt-get install -yqq gcc make \
                    linux-headers-$(uname -r) && \
-apt-get install -y ca-certificates bash && \
-apt-get install -y python-setuptools \
+apt-get install -yqq ca-certificates bash && \
+apt-get install -yqq python-setuptools \
                    perl pkg-config \
                    python python-pip \
                    python-dev && \
 
-easy_install --upgrade pip && \
-easy_install --upgrade setuptools; \
-pip install setuptools --upgrade && \
+sudo easy_install --upgrade pip && \
+sudo easy_install --upgrade setuptools; \
+sudo pip install setuptools --upgrade && \
 
 add-apt-repository -y ppa:git-core/ppa && \
 add-apt-repository -y ppa:ansible/ansible && \
 
 apt-get update -yqq && \
 apt-get install -yqq git lsof strace && \
-apt-get upgrade -y && \
-apt install -y ansible && \
+apt-get upgrade -yqq && \
+apt-get install -yqq ansible && \
 
 apt-get install -y openssh-server \
                    cryptsetup \
@@ -49,7 +49,8 @@ apt-get install -y openssh-server \
                    vim-nox
 
 echo ${_USER}:${_USER} | chpasswd
-groupmod -A ${_USER} wheel
+# groupmod -A ${_USER} wheel
+usermod -a -G wheel ${_USER}
 
 # Install the ${_USER} insecure public SSH key.
 mkdir /home/${_USER}/.ssh
@@ -75,8 +76,8 @@ date > /etc/vagrant_box_build_time
 
 # cleanup
 # source: https://github.com/geekduck/packer-templates/blob/76fb94e4161cd21a30047205c77cefeb4b881f8d/Ubuntu16.04/scripts/cleanup.sh
-apt-get -y autoremove
-apt-get -y clean
+apt-get -yqq autoremove
+apt-get -yqq clean
 
 # Install docker now
 # prereqs
@@ -140,13 +141,13 @@ sudo apt-get install -y git-core \
                      python-software-properties \
                      libffi-dev nodejs
 
-sudo apt-get install -y libgdbm-dev \
+sudo apt-get install -yqq libgdbm-dev \
                         libncurses5-dev \
                         automake libtool \
                         bison libffi-dev
 
 # https://askubuntu.com/questions/21547/what-are-the-packages-libraries-i-should-install-before-compiling-python-from-so
-sudo apt-get install -y build-essential \
+sudo apt-get install -yqq build-essential \
                         libncursesw5-dev \
                         libreadline5-dev \
                         libssl-dev \
@@ -155,6 +156,6 @@ sudo apt-get install -y build-essential \
                         libsqlite3-dev tk-dev \
                         libbz2-dev
 
-sudo apt-get build-dep -y python3.4
+sudo apt-get build-dep -yqq python3.4
 
 exit 0
