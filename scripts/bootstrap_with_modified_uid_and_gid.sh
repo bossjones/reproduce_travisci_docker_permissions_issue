@@ -5,7 +5,7 @@ set -x
 _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${_DIR}/default.sh
 
-apt-get update -y && \
+apt-get update -yqq && \
 apt-get install -y software-properties-common \
                    python-software-properties && \
 apt-get install -y git && \
@@ -19,7 +19,6 @@ apt-get install -y gcc make \
 apt-get install -y ca-certificates bash && \
 apt-get install -y python-setuptools \
                    perl pkg-config \
-                   software-properties-common \
                    python python-pip \
                    python-dev && \
 
@@ -27,20 +26,12 @@ easy_install --upgrade pip && \
 easy_install --upgrade setuptools; \
 pip install setuptools --upgrade && \
 
-add-apt-repository ppa:git-core/ppa -y && \
-
-apt-get update && \
-apt-get install -yqq git && \
-apt-get update && \
-apt-get upgrade -y && \
-
-apt-get install -y lsof strace && \
-apt-get update -yqq && \
-apt-get upgrade -y && \
-
-apt-get install -y software-properties-common && \
+add-apt-repository -y ppa:git-core/ppa && \
 add-apt-repository -y ppa:ansible/ansible && \
-apt-get update -y && \
+
+apt-get update -yqq && \
+apt-get install -yqq git lsof strace && \
+apt-get upgrade -y && \
 apt install -y ansible && \
 
 apt-get install -y openssh-server \
@@ -137,7 +128,7 @@ sudo wget https://github.com/bcicen/ctop/releases/download/v0.6.0/ctop-0.6.0-lin
 sudo chmod +x /usr/local/bin/ctop
 
 # other deps
-sudo apt-get update
+sudo apt-get update -qq
 sudo apt-get install -y git-core \
                      htop \
                      curl zlib1g-dev \
