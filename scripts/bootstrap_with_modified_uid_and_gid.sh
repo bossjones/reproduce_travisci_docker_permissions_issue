@@ -32,7 +32,7 @@ add-apt-repository -y ppa:ansible/ansible && \
 apt-get update -yqq && \
 apt-get install -yqq git lsof strace && \
 apt-get upgrade -yqq && \
-apt-get install -yqq ansible && \
+apt-get install -yqq ansible;
 
 apt-get install -y openssh-server \
                    cryptsetup \
@@ -46,7 +46,9 @@ apt-get install -y openssh-server \
                    zip unzip \
                    tree screen \
                    vim ntp \
-                   vim-nox
+                   vim-nox;
+
+echo "CHANGE PASSWORD NOW FRIEND"
 
 echo ${_USER}:${_USER} | chpasswd
 # groupmod -A ${_USER} wheel
